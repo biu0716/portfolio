@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时子涵 — PR Agent 作品集</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --color-bg:           #FAF8F4;
+  --color-bg-alt:       #F2EFE9;
+  --color-bg-dark:      #1E1E2E;
+  --color-surface:      #FFFFFF;
+  --color-surface-warm: #FDF9F3;
+  --color-accent:       #D94F3D;
+  --color-accent-hover: #B83D2C;
+  --color-accent-soft:  #FBE9E7;
+  --color-text:         #1A1714;
+  --color-text-muted:   #6B6560;
+  --color-text-subtle:  #9E9690;
+  --color-text-inverse: #F0EDE8;
+  --color-border:       #E8E2DA;
+  --color-border-mid:   #D4CCC2;
+  --font-display: 'Bricolage Grotesque', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem;
+  --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem; --text-4xl: 2.25rem; --text-5xl: 3rem;
+  --leading-tight: 1.25; --leading-snug: 1.375; --leading-normal: 1.5; --leading-relaxed: 1.625;
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;
+  --space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:16px;--radius-2xl:24px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px rgba(26,23,20,.08);--shadow-md:0 4px 12px rgba(26,23,20,.10);
+  --shadow-lg:0 8px 24px rgba(26,23,20,.12);--shadow-xl:0 16px 48px rgba(26,23,20,.14);
+  --transition-fast:150ms ease;--transition-normal:250ms ease;--transition-slow:400ms ease;
+  --content-width:800px;--wide-width:1100px;--nav-height:60px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;overflow-x:hidden}
+body{font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--color-text);background:var(--color-bg)}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--color-bg-alt)}
+::-webkit-scrollbar-thumb{background:var(--color-border-mid);border-radius:var(--radius-full)}
+::-webkit-scrollbar-thumb:hover{background:var(--color-text-subtle)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-height);background:rgba(250,248,244,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--color-border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 var(--space-8);z-index:1000}
+.nav-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--color-accent);transition:width var(--transition-normal)}
+.nav-brand{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg)}
+.nav-modules{display:flex;gap:var(--space-2)}
+.nav-dot{width:8px;height:8px;border-radius:var(--radius-full);background:var(--color-border-mid);cursor:pointer;transition:all var(--transition-fast)}
+.nav-dot.active{background:var(--color-accent);transform:scale(1.3)}
+.nav-dot.visited{background:var(--color-text-subtle)}
+
+/* MODULES */
+.module{min-height:100dvh;min-height:100vh;scroll-snap-align:start;
+  padding:calc(var(--nav-height) + var(--space-12)) var(--space-8) var(--space-12);
+  display:flex;flex-direction:column;align-items:center;justify-content:center}
+.module:nth-child(odd){background:var(--color-bg)}
+.module:nth-child(even){background:var(--color-bg-alt)}
+.module-inner{width:100%;max-width:var(--content-width)}
+.module-wide{max-width:var(--wide-width)}
+
+/* TYPOGRAPHY */
+.display{font-family:var(--font-display);font-size:clamp(var(--text-3xl),5vw,var(--text-5xl));font-weight:800;line-height:var(--leading-tight);letter-spacing:-.02em}
+.heading-1{font-family:var(--font-display);font-size:clamp(var(--text-2xl),3vw,var(--text-4xl));font-weight:700;line-height:var(--leading-tight)}
+.heading-2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;line-height:var(--leading-snug)}
+.module-label{font-size:var(--text-sm);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent)}
+.lead{font-size:var(--text-lg);color:var(--color-text-muted);line-height:var(--leading-relaxed);max-width:60ch}
+
+/* CARDS */
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.card-warm{background:var(--color-surface-warm)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-4)}
+
+/* CALLOUT */
+.callout{background:var(--color-accent-soft);border:1px solid rgba(217,79,61,.3);border-left:4px solid var(--color-accent);border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6)}
+.callout-icon{font-size:var(--text-xl);margin-bottom:var(--space-2)}
+.callout-title{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-2)}
+
+/* PATTERN CARDS */
+.pattern-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.pattern-icon{font-size:2rem;margin-bottom:var(--space-3)}
+.pattern-name{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.pattern-desc{color:var(--color-text-muted);font-size:var(--text-sm);line-height:var(--leading-relaxed)}
+
+/* ACTOR CARD */
+.actor-card{display:flex;align-items:flex-start;gap:var(--space-4);padding:var(--space-5) var(--space-6);
+  background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);border-left:4px solid var(--actor-color,var(--color-accent))}
+
+/* STEP FLOW */
+.step-flow{display:flex;flex-direction:column;gap:var(--space-4)}
+.step-item{display:flex;gap:var(--space-4);align-items:flex-start}
+.step-num{width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:var(--text-sm);flex-shrink:0;margin-top:2px}
+.step-content h4{font-family:var(--font-display);font-weight:700;margin-bottom:var(--space-1)}
+.step-content p{color:var(--color-text-muted);font-size:var(--text-sm)}
+
+/* HERO */
+.hero-badge{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent-soft);
+  color:var(--color-accent);border-radius:var(--radius-full);padding:var(--space-2) var(--space-4);
+  font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-6)}
+.hero-tags{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-6)}
+.tag{display:inline-block;padding:var(--space-1) var(--space-3);background:var(--color-bg-alt);
+  border:1px solid var(--color-border);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:500;color:var(--color-text-muted)}
+
+/* DIVIDER */
+.section-space{height:var(--space-10)}
+.section-space-sm{height:var(--space-6)}
+
+/* INLINE CODE */
+code{font-family:var(--font-mono);font-size:.9em;background:var(--color-bg-alt);padding:2px 6px;border-radius:var(--radius-sm);color:var(--color-accent)}
+
+/* LINK */
+a.link{color:var(--color-accent);text-decoration:none;border-bottom:1px solid rgba(217,79,61,.3);transition:border-color var(--transition-fast)}
+a.link:hover{border-color:var(--color-accent)}
+
+/* COMPARE TABLE */
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--color-border);margin-bottom:var(--space-3)}
+.compare-cell{padding:var(--space-4) var(--space-5);font-size:var(--text-sm);line-height:var(--leading-relaxed)}
+.compare-cell.bad{background:#FEF2F2;color:#991B1B;border-right:1px solid var(--color-border)}
+.compare-cell.good{background:#F0FDF4;color:#14532D}
+.compare-header{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:var(--space-3);padding:0 var(--space-2)}
+.compare-header span{font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-subtle)}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0}
+.timeline-item{display:flex;gap:var(--space-5);position:relative}
+.timeline-item:not(:last-child)::before{content:'';position:absolute;left:15px;top:32px;bottom:-var(--space-4);width:2px;background:var(--color-border);height:calc(100% + var(--space-4))}
+.timeline-dot{width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-surface);border:2px solid var(--color-border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:var(--text-sm);z-index:1}
+.timeline-dot.active{border-color:var(--color-accent);background:var(--color-accent-soft)}
+.timeline-content{padding-bottom:var(--space-8);flex:1}
+.timeline-label{font-size:var(--text-xs);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:var(--space-2)}
+.timeline-title{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.timeline-desc{color:var(--color-text-muted);font-size:var(--text-sm);line-height:var(--leading-relaxed)}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(32px)}
+.fade-in{opacity:0}
+.slide-left{opacity:0;transform:translateX(-32px)}
+.scale-in{opacity:0;transform:scale(.92)}
+.fade-up.visible,.fade-in.visible,.slide-left.visible,.scale-in.visible{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+.stagger>*{opacity:0;transform:translateY(24px)}
+
+/* STAT */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-4)}
+.stat-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);text-align:center}
+.stat-num{font-family:var(--font-display);font-size:var(--text-4xl);font-weight:800;color:var(--color-accent);line-height:1}
+.stat-label{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-2)}
+
+@media(max-width:768px){
+  .module{padding:calc(var(--nav-height) + var(--space-8)) var(--space-4) var(--space-8)}
+  .card-grid{grid-template-columns:1fr}
+  .compare-row{grid-template-columns:1fr}
+  .compare-cell.bad{border-right:none;border-bottom:1px solid var(--color-border)}
+  .nav-modules{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation">
+  <div class="nav-brand">时子涵 · 作品集</div>
+  <div class="nav-modules" role="list">
+    <div class="nav-dot active" title="封面"></div>
+    <div class="nav-dot" title="这是谁做的"></div>
+    <div class="nav-dot" title="项目是什么"></div>
+    <div class="nav-dot" title="产品判断"></div>
+    <div class="nav-dot" title="它怎么工作"></div>
+    <div class="nav-dot" title="当前阶段"></div>
+    <div class="nav-dot" title="业务背景"></div>
+  </div>
+  <div class="nav-progress"></div>
+</nav>
+
+<!-- ═══════════════════════════════ PAGE 1 — 封面 ═══════════════════════════════ -->
+<section class="module" id="page-1">
+  <div class="module-inner">
+
+    <div class="fade-up">
+      <div class="hero-badge">🗂️ AI 应用产品方向 · 个人项目</div>
+
+      <div style="margin-bottom:var(--space-3)">
+        <span style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:600;color:var(--color-text-muted)">时子涵</span>
+      </div>
+
+      <h1 class="display" style="margin-bottom:var(--space-4)">PR Agent</h1>
+
+      <p style="font-size:var(--text-xl);color:var(--color-text-muted);margin-bottom:var(--space-8);font-family:var(--font-display);font-weight:600">
+        面向真实工作任务的垂直 AI 工作台
+      </p>
+
+      <div class="callout" style="margin-bottom:var(--space-8)">
+        <div class="callout-icon">💡</div>
+        <div class="callout-title">不是通用聊天机器人</div>
+        <p style="color:var(--color-text-muted);font-size:var(--text-sm)">
+          市面上的 AI 写作工具解决的是"生成"问题，但汽车公关的真实痛点是<strong>可控性</strong>——术语跑偏、口径不统一、输出结果无法复用。PR Agent 从这个问题出发，按任务流程组织工作台，而不是用一个聊天框走所有场景。
+        </p>
+      </div>
+
+      <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-8)">
+        <div style="flex:1;min-width:160px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-2)">✍️</div>
+          <div style="font-weight:600;font-size:var(--text-sm);font-family:var(--font-display)">生成新内容</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-2)">🔍</div>
+          <div style="font-weight:600;font-size:var(--text-sm);font-family:var(--font-display)">检查现有内容</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-2)">🔧</div>
+          <div style="font-weight:600;font-size:var(--text-sm);font-family:var(--font-display)">统一表达</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-2)">✨</div>
+          <div style="font-weight:600;font-size:var(--text-sm);font-family:var(--font-display)">优化已有文案</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="transition-delay:200ms">
+      <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap">
+        <a href="https://pr-semantic-search-tmyfjdzfscxdt8ul98aygz.streamlit.app/" target="_blank" style="display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent);color:#fff;border-radius:var(--radius-full);padding:var(--space-3) var(--space-6);font-weight:600;font-size:var(--text-sm);text-decoration:none;transition:background var(--transition-fast)" onmouseover="this.style.background='#B83D2C'" onmouseout="this.style.background='#D94F3D'">
+          🚀 查看 Demo
+        </a>
+        <a href="https://github.com/biu0716/pr-semantic-search" target="_blank" style="display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:var(--space-3) var(--space-6);font-weight:600;font-size:var(--text-sm);text-decoration:none">
+          GitHub 仓库
+        </a>
+        <span style="font-size:var(--text-xs);color:var(--color-text-subtle)">Alpha 原型 · 核心链路已完成 · 可演示</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PAGE 2 — 这是谁做的 ═══════════════════════════════ -->
+<section class="module" id="page-2">
+  <div class="module-inner">
+
+    <div class="fade-up">
+      <div class="module-label">关于我</div>
+      <div class="section-space-sm"></div>
+      <h2 class="heading-1">从业务场景<br>走向 AI 应用产品</h2>
+      <p class="lead" style="margin-top:var(--space-4)">我不是"内容人学了点 AI"，而是从真实复杂业务中提炼出产品需求，独立做出可演示原型。</p>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="stat-grid fade-up" style="transition-delay:100ms;margin-bottom:var(--space-6)">
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">年汽车与消费品牌公关经验</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">北大</div>
+        <div class="stat-label">中文系本科</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">RAG</div>
+        <div class="stat-label">知识库 · Prompt · 规则约束 · 部署</div>
+      </div>
+    </div>
+
+    <div class="stagger fade-up" style="transition-delay:150ms">
+      <div class="actor-card" style="--actor-color:#3B82F6;margin-bottom:var(--space-3)">
+        <div style="font-size:1.5rem">🏢</div>
+        <div>
+          <div style="font-weight:700;font-family:var(--font-display);margin-bottom:var(--space-1)">梅赛德斯-奔驰 · 客户经理</div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-muted)">处理技术信息转化、品牌术语统一、内容口径管控——这些问题直接成为 PR Agent 的产品需求来源。</div>
+        </div>
+      </div>
+      <div class="actor-card" style="--actor-color:#8B5CF6;margin-bottom:var(--space-3)">
+        <div style="font-size:1.5rem">🚗</div>
+        <div>
+          <div style="font-weight:700;font-family:var(--font-display);margin-bottom:var(--space-1)">BMW / MINI · 高级客户执行</div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-muted)">主导宝马广州车展发布稿，整合三大品牌及 V2X 等复杂技术信息，以结构化主线完成对外表达。</div>
+        </div>
+      </div>
+      <div class="actor-card" style="--actor-color:#10B981">
+        <div style="font-size:1.5rem">🔥</div>
+        <div>
+          <div style="font-weight:700;font-family:var(--font-display);margin-bottom:var(--space-1)">海底捞 · 品牌营销</div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-muted)">整合营销项目策划与执行，外送应急传播总曝光 167 万+、总点击 4.4 万+。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="hero-tags fade-in" style="transition-delay:300ms">
+      <span class="tag">RAG</span>
+      <span class="tag">知识库构建</span>
+      <span class="tag">Prompt 设计</span>
+      <span class="tag">规则约束生成</span>
+      <span class="tag">Python</span>
+      <span class="tag">Streamlit</span>
+      <span class="tag">FAISS</span>
+      <span class="tag">GitHub</span>
+      <span class="tag">汽车公关</span>
+      <span class="tag">技术信息转化</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PAGE 3 — 项目是什么 ═══════════════════════════════ -->
+<section class="module" id="page-3">
+  <div class="module-inner">
+
+    <div class="fade-up">
+      <div class="module-label">项目定义</div>
+      <div class="section-space-sm"></div>
+      <h2 class="heading-1">PR Agent<br>在解决什么问题？</h2>
+      <p class="lead" style="margin-top:var(--space-4)">真正缺少的，是一个能进入实际工作流程、把分散任务串起来、让输出结果可控的工具。</p>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="fade-up" style="transition-delay:100ms;margin-bottom:var(--space-6)">
+      <h3 class="heading-2" style="margin-bottom:var(--space-4)">真实工作流里的问题</h3>
+      <div class="compare-header">
+        <span>❌ 现有工具的局限</span>
+        <span>✅ PR Agent 的解法</span>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell bad">通用 AI 没有品牌规则约束，每次生成结果不一致，术语随机跑偏</div>
+        <div class="compare-cell good">引入术语表与规则约束机制，将品牌写法沉淀为可复用系统能力</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell bad">生成、检查、修改分散在不同工具，流程衔接低效</div>
+        <div class="compare-cell good">四类任务整合在同一工作台，选任务 → 输入 → 运行 → 查看结果</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell bad">通用聊天框让用户不知道从哪开始、该输入什么</div>
+        <div class="compare-cell good">按任务分流设计入口，每类任务有独立交互逻辑，降低使用门槛</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell bad">AI 不认识你的资料库，输出内容和项目背景脱节</div>
+        <div class="compare-cell good">RAG 链路支持资料驱动生成，知识库可补充、索引可重建</div>
+      </div>
+    </div>
+
+    <div class="callout fade-up" style="transition-delay:200ms">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-title">核心判断</div>
+      <p style="color:var(--color-text-muted);font-size:var(--text-sm)">
+        PR Agent 的目标不是"更快生成内容"，而是让整个处理过程<strong>更稳定、更可用、更可控</strong>。输出质量的一致性，比生成速度更重要。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PAGE 4 — 产品判断 ═══════════════════════════════ -->
+<section class="module" id="page-4">
+  <div class="module-inner module-wide">
+
+    <div class="fade-up">
+      <div class="module-label">产品设计判断</div>
+      <div class="section-space-sm"></div>
+      <h2 class="heading-1">为什么这样设计？</h2>
+      <p class="lead" style="margin-top:var(--space-4)">每一个设计决策背后都有具体的业务判断，不是功能堆砌。</p>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="card-grid fade-up" style="transition-delay:100ms">
+
+      <div class="pattern-card">
+        <div class="pattern-icon">🗂️</div>
+        <div class="pattern-name">任务分流，不用聊天框</div>
+        <div class="pattern-desc">
+          将高频任务拆解为 <code>generate</code> / <code>check</code> / <code>normalize</code> / <code>rewrite</code> 四类，每类设计独立交互逻辑。
+          <br><br>
+          <strong>判断依据：</strong>不同任务的输入形态、规则依赖和输出要求差异很大，强行统一到一个聊天框只会提高使用门槛，让用户不知道该输入什么。
+        </div>
+      </div>
+
+      <div class="pattern-card">
+        <div class="pattern-icon">📋</div>
+        <div class="pattern-name">规则系统，不靠 Prompt 临时注入</div>
+        <div class="pattern-desc">
+          引入术语表与规则约束机制，将品牌写法、表达口径与审稿标准沉淀为可复用系统能力。
+          <br><br>
+          <strong>判断依据：</strong>每次靠 Prompt 临时注入规则，输出结果不稳定。把规则固化到系统层，才能保证跨任务、跨用户的输出一致性。
+        </div>
+      </div>
+
+      <div class="pattern-card">
+        <div class="pattern-icon">🔍</div>
+        <div class="pattern-name">RAG 驱动，不靠模型"编"</div>
+        <div class="pattern-desc">
+          文档解析 → 切分 → Embedding → FAISS 索引 → 语义检索，支持资料驱动的内容生成。
+          <br><br>
+          <strong>判断依据：</strong>汽车公关内容必须有据可查，纯靠大模型生成的内容容易"幻觉"出错误的技术参数或品牌表达。
+        </div>
+      </div>
+
+      <div class="pattern-card">
+        <div class="pattern-icon">🎛️</div>
+        <div class="pattern-name">高级功能后置，主流程前置</div>
+        <div class="pattern-desc">
+          将术语表管理、参数调整放到侧边栏，首页只保留核心任务入口。
+          <br><br>
+          <strong>判断依据：</strong>功能越多，用户越容易迷失。主流程要让用户第一次进入就知道该从哪开始，复杂功能按需展开。
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="callout fade-up" style="transition-delay:200ms">
+      <div class="callout-icon">📌</div>
+      <div class="callout-title">产品阶段判断</div>
+      <p style="color:var(--color-text-muted);font-size:var(--text-sm)">
+        当前处于 Alpha 阶段，重点已从"功能跑通"转向"输出质量优化与交互体验打磨"。这是一个主动判断，不是能力边界——继续堆功能不是当前最有价值的事。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PAGE 5 — 它怎么工作 ═══════════════════════════════ -->
+<section class="module" id="page-5">
+  <div class="module-inner">
+
+    <div class="fade-up">
+      <div class="module-label">技术实现</div>
+      <div class="section-space-sm"></div>
+      <h2 class="heading-1">把资料、任务与输出<br>串成一条可复用的流程</h2>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="card fade-up" style="transition-delay:100ms;margin-bottom:var(--space-4)">
+      <p class="module-label" style="margin-bottom:var(--space-5)">📥 资料进入系统的路径</p>
+      <div class="step-flow">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>上传资料</h4>
+            <p>历史稿件、产品资料、术语表，支持文件上传与知识库补充，也支持临时文件注入。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>解析与切分</h4>
+            <p>文档解析后按语义边界切分，不硬切句子，保证每个片段语义完整。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Embedding 与索引</h4>
+            <p>文本向量化后存入 FAISS 索引，支持语义检索——搜"品牌调性"也能找到写"品牌声音"的段落。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-up" style="transition-delay:200ms;margin-bottom:var(--space-4)">
+      <p class="module-label" style="margin-bottom:var(--space-5)">⚙️ 任务执行的路径</p>
+      <div class="step-flow">
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>选任务 · 输入需求</h4>
+            <p>从 generate / check / normalize / rewrite 中选择当前任务，填入需求与上下文。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>RAG 检索 · 规则注入</h4>
+            <p>从知识库检索最相关的资料片段，同时加载术语表与规则约束，作为生成的依据。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h4>生成 · 查看 · 导出</h4>
+            <p>结果直接展示在工作台中，支持左右对照修改、继续优化、导出不同格式。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-tags fade-in" style="transition-delay:300ms">
+      <span class="tag">Python</span>
+      <span class="tag">Streamlit</span>
+      <span class="tag">FAISS</span>
+      <span class="tag">sentence-transformers</span>
+      <span class="tag">RAG</span>
+      <span class="tag">GitHub</span>
+      <span class="tag">在线部署</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PAGE 6 — 当前阶段 ═══════════════════════════════ -->
+<section class="module" id="page-6">
+  <div class="module-inner">
+
+    <div class="fade-up">
+      <div class="module-label">当前阶段与下一步判断</div>
+      <div class="section-space-sm"></div>
+      <h2 class="heading-1">Alpha 阶段，<br>重点在质量不在功能</h2>
+      <p class="lead" style="margin-top:var(--space-4)">核心链路已跑通，当前任务是把输出做稳，而不是继续堆功能。</p>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="timeline fade-up" style="transition-delay:100ms">
+
+      <div class="timeline-item">
+        <div class="timeline-dot active">✅</div>
+        <div class="timeline-content">
+          <div class="timeline-label">已完成</div>
+          <div class="timeline-title">核心链路与可交互 Demo</div>
+          <div class="timeline-desc">RAG 检索链路、四类核心任务、规则约束系统、术语表机制、Streamlit 工作台、文件上传、索引重建、结果导出、在线部署。</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot active">🔄</div>
+        <div class="timeline-content">
+          <div class="timeline-label">当前重点</div>
+          <div class="timeline-title">输出质量 · 体验优化</div>
+          <div class="timeline-desc">内容风格与质量稳定性、规则和术语约束覆盖范围、结果展示的可读性与专业感、模型调用稳定性。</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">→</div>
+        <div class="timeline-content">
+          <div class="timeline-label">下一步</div>
+          <div class="timeline-title">强化约束 · 结构化输出</div>
+          <div class="timeline-desc">强化规则和术语约束，让不同任务下的表达更统一；增强导出、结构化输出与异常处理能力；持续迭代为可演示的稳定版本。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="callout fade-up" style="transition-delay:200ms">
+      <div class="callout-icon">📐</div>
+      <div class="callout-title">阶段判断</div>
+      <p style="color:var(--color-text-muted);font-size:var(--text-sm)">
+        这些问题是 Alpha 阶段的正常状态，不是设计缺陷。当前的核心任务是在可控范围内把输出质量做稳，这个项目的价值是从真实工作场景出发，把资料调用、内容处理和交互流程逐步沉淀成一个可持续迭代的垂直工具。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PAGE 7 — 业务背景 ═══════════════════════════════ -->
+<section class="module" id="page-7">
+  <div class="module-inner">
+
+    <div class="fade-up">
+      <div class="module-label">业务背景 · 需求来源</div>
+      <div class="section-space-sm"></div>
+      <h2 class="heading-1">这些经历<br>是项目的需求来源</h2>
+      <p class="lead" style="margin-top:var(--space-4)">PR Agent 不是凭空设计的——它解决的问题，是我在真实工作中反复遇到的问题。</p>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div class="card fade-up" style="transition-delay:100ms;margin-bottom:var(--space-4);border-left:4px solid var(--color-accent)">
+      <p class="module-label" style="margin-bottom:var(--space-3)">案例 · CLA 冬季长测</p>
+      <h3 style="font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);margin-bottom:var(--space-3)">技术测试数据 → 跨媒介内容表达</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-4)">
+        <div>
+          <div style="font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:var(--space-2)">任务</div>
+          <p style="font-size:var(--text-sm);color:var(--color-text-muted)">围绕全新纯电 CLA 冬季长途出行场景，将技术测试数据转化为视频脚本与品牌推送双重输出。</p>
+        </div>
+        <div>
+          <div style="font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:var(--space-2)">处理方式</div>
+          <p style="font-size:var(--text-sm);color:var(--color-text-muted)">以"冬季灵魂拷问"为框架，用户问题前置、参数后置，降低技术内容阅读门槛。视频负责节奏，推送负责解释，同一主题，双重分工。</p>
+        </div>
+      </div>
+      <div class="callout" style="margin:0">
+        <div style="font-size:var(--text-sm);color:var(--color-text-muted)">
+          <strong>这个经历揭示了什么：</strong>技术信息的转化不只是"改写成人话"，而是要理解不同媒介的信息结构，知道什么先说、什么后说、什么不说。这个判断能力，成为了 PR Agent 中 <code>generate</code> 和 <code>rewrite</code> 模式设计的核心参考。
+        </div>
+      </div>
+    </div>
+
+    <div class="section-space"></div>
+
+    <div style="text-align:center;padding:var(--space-8) 0" class="fade-in" style="transition-delay:200ms">
+      <div style="font-size:2.5rem;margin-bottom:var(--space-4)">👋</div>
+      <h2 class="heading-2" style="margin-bottom:var(--space-4)">感谢阅读</h2>
+      <p style="color:var(--color-text-muted);max-width:50ch;margin:0 auto var(--space-6)">欢迎查看 Demo 或通过以下方式联系我。</p>
+      <div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap">
+        <a href="https://pr-semantic-search-tmyfjdzfscxdt8ul98aygz.streamlit.app/" target="_blank" style="display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-accent);color:#fff;border-radius:var(--radius-full);padding:var(--space-3) var(--space-6);font-weight:600;font-size:var(--text-sm);text-decoration:none">
+          🚀 查看 Demo
+        </a>
+        <a href="mailto:shizihan0716@163.com" style="display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:var(--space-3) var(--space-6);font-weight:600;font-size:var(--text-sm);text-decoration:none">
+          ✉️ shizihan0716@163.com
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+
+  // ANIMATIONS
+  (function initAnimations() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.classList.contains('stagger')) {
+            entry.target.querySelectorAll(':scope > *').forEach((child, i) => {
+              child.style.transitionDelay = `${i * 120}ms`;
+              child.style.opacity = '1';
+              child.style.transform = 'none';
+              child.style.transition = `opacity 0.5s ease ${i * 120}ms, transform 0.5s ease ${i * 120}ms`;
+            });
+          }
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '-40px' });
+
+    document.querySelectorAll('.fade-up, .fade-in, .slide-left, .scale-in, .stagger').forEach(el => {
+      observer.observe(el);
+    });
+  })();
+
+  // NAVIGATION
+  (function initNav() {
+    const modules = document.querySelectorAll('.module');
+    const dots    = document.querySelectorAll('.nav-dot');
+    const bar     = document.querySelector('.nav-progress');
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        if (bar) bar.style.width = `${(scrolled / total * 100)}%`;
+
+        modules.forEach((mod, i) => {
+          const rect = mod.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            dots.forEach(d => d.classList.remove('active'));
+            if (dots[i]) { dots[i].classList.add('active'); dots[i].classList.add('visited'); }
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }, { passive: true });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => modules[i]?.scrollIntoView({ behavior: 'smooth' }));
+    });
+
+    document.addEventListener('keydown', e => {
+      const current = Array.from(modules).findIndex(m => {
+        const r = m.getBoundingClientRect();
+        return r.top <= 60 && r.bottom > 60;
+      });
+      if (e.key === 'ArrowDown' && current < modules.length - 1)
+        modules[current + 1].scrollIntoView({ behavior: 'smooth' });
+      if (e.key === 'ArrowUp' && current > 0)
+        modules[current - 1].scrollIntoView({ behavior: 'smooth' });
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
