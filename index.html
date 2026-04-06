@@ -146,6 +146,10 @@ a.link:hover{border-color:var(--color-accent)}
 .fade-up.visible,.fade-in.visible,.slide-left.visible,.scale-in.visible{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
 .stagger>*{opacity:0;transform:translateY(24px)}
 
+/* Force show all content for local file compatibility */
+.fade-up, .fade-in, .slide-left, .scale-in {opacity:1;transform:none}
+.stagger>*{opacity:1;transform:none}
+
 /* STAT */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-4)}
 .stat-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);text-align:center}
