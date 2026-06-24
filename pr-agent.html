@@ -113,6 +113,15 @@
     overflow-wrap:anywhere;
   }
   .lead strong{color:#fff;font-weight:600;}
+  .hero-subtitle{
+    max-width:620px;
+    margin:-8px 0 14px;
+    font-family:var(--display);
+    font-size:clamp(24px,2.6vw,38px);
+    line-height:1.18;
+    letter-spacing:-.01em;
+    color:var(--warm);
+  }
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 36px;}
   .button{
     display:inline-flex;
@@ -354,7 +363,8 @@
       <div>
         <div class="kicker">Product Case / Automotive PR</div>
         <h1>PR<br><em>Agent</em></h1>
-        <p class="lead">一个面向汽车公关工作的内容工作台。它把传播需求、知识库检索、稿件生成和审校改写放进同一个流程里，让 AI 不再像聊天窗口，而更像一个能交付初稿的 <strong>PR 工作台</strong>。</p>
+        <p class="hero-subtitle">面向汽车公关工作的 AI 内容工作台</p>
+        <p class="lead">PR Agent 不是一个泛泛聊天的 AI，而是一个面向汽车公关真实任务的内容工作台。它支持生成新内容、检查已有稿件、统一表达，并结合资料检索提升输出的可控性。</p>
         <div class="hero-actions">
           <a class="button primary" href="https://pr-agent.preview.tencent-zeabur.cn" target="_blank" rel="noreferrer">Open Product</a>
           <a class="button ghost" href="https://github.com/biu0716/pr-semantic-search" target="_blank" rel="noreferrer">View GitHub</a>
@@ -390,28 +400,28 @@
             <div class="section-head">
               <div>
                 <div class="kicker">What it is</div>
-                <h2>汽车公关顾问的 <em>内容工作台</em></h2>
+                <h2>汽车公关的<br><em>AI 内容工作台</em></h2>
               </div>
-              <p class="section-note">PR Agent 不是一个通用写稿机器人，而是围绕汽车传播任务拆出来的垂直 Agent。</p>
+              <p class="section-note">它围绕真实内容任务来设计，帮助用户把分散的工作串成一条更清楚的流程。</p>
             </div>
-            <p class="statement">它从 brief 进入，把模糊需求整理成传播方向、标题、导语、新闻稿段落和社媒文案；也能对已有稿件做风险检查、口径统一和 PR 风格改写。</p>
-            <p>我希望它更像真实顾问会用的工作台：输入有结构，输出像文档，过程能解释，关键资料能回到知识库检索，而不是把所有工作都塞进一个空白聊天框。</p>
+            <p class="statement">PR Agent 是一个给汽车公关用的内容助手。它可以根据 brief 和资料整理传播方向，生成标题、导语、新闻稿段落和社媒文案；也可以继续处理已有稿件，完成审稿、统一表达和改写。</p>
+            <p>我想做的是一个真的能放进工作里的工具。用户知道从哪里开始，知道该输入什么，也知道系统正在帮自己完成哪一步。</p>
           </section>
 
           <section class="case-section" id="workflow">
             <div class="section-head">
               <div>
                 <div class="kicker">Workflow</div>
-                <h2>从传播需求到 <em>可编辑初稿</em></h2>
+                <h2>从 brief 到<br><em>可交付内容</em></h2>
               </div>
-              <p class="section-note">核心流程从 brief 开始，而不是从 prompt 开始。</p>
+              <p class="section-note">PR Agent 将需求输入、资料调用、传播判断和内容输出组织成一条清晰流程。</p>
             </div>
             <div class="flow" aria-label="PR Agent 工作流">
-              <div class="flow-step"><span class="num">01</span><strong>传播 brief</strong><small>输入项目背景、目标和初步需求。</small></div>
-              <div class="flow-step"><span class="num">02</span><strong>分类字段</strong><small>选择内容类型、品牌、语气与任务目标。</small></div>
-              <div class="flow-step"><span class="num">03</span><strong>知识库检索</strong><small>从本地资料中找可引用的上下文。</small></div>
-              <div class="flow-step"><span class="num">04</span><strong>策略骨架</strong><small>先搭传播逻辑，再生成具体文案。</small></div>
-              <div class="flow-step"><span class="num">05</span><strong>文档交付</strong><small>按章节输出，便于继续修改。</small></div>
+              <div class="flow-step"><span class="num">01</span><strong>输入 brief</strong><small>填写项目背景、传播目标和初步需求。</small></div>
+              <div class="flow-step"><span class="num">02</span><strong>选择任务字段</strong><small>选择内容类型、品牌、语气和任务目标。</small></div>
+              <div class="flow-step"><span class="num">03</span><strong>检索相关资料</strong><small>从本地知识库中找到当前任务可引用的信息。</small></div>
+              <div class="flow-step"><span class="num">04</span><strong>生成策略骨架</strong><small>先整理传播逻辑，再展开具体文案内容。</small></div>
+              <div class="flow-step"><span class="num">05</span><strong>输出交付结果</strong><small>按结构展示结果，方便继续修改和导出。</small></div>
             </div>
             <figure class="screenshot">
               <img src="assets/pr-agent-current.png" alt="PR Agent 输入工作区截图">
@@ -423,31 +433,31 @@
             <div class="section-head">
               <div>
                 <div class="kicker">Product Logic</div>
-                <h2>三个模块，对应三种 <em>真实任务</em></h2>
+                <h2>三个模块，覆盖三类<br><em>内容任务</em></h2>
               </div>
-              <p class="section-note">生成、审校、检索的输入不同，判断标准也不同，所以不混成一个聊天入口。</p>
+              <p class="section-note">PR Agent 将内容生成、稿件处理和资料检索拆成独立模块，分别承接不同输入、处理逻辑和结果形式。</p>
             </div>
             <div class="module-grid">
               <article class="module">
                 <span class="num">Module 01</span>
                 <h3>传播内容生成</h3>
-                <p>把传播 brief 转成主题、方向、标题、导语、新闻稿段落和社媒文案，先搭策略骨架，再生成具体内容。</p>
+                <p>根据传播 brief 和参考资料，生成主题、方向、标题、导语、正文段落和社媒文案。输出先形成策略骨架，再展开具体内容。</p>
               </article>
               <article class="module">
                 <span class="num">Module 02</span>
                 <h3>稿件审校改写</h3>
-                <p>检查已有稿件里的事实风险、时间表述、品牌口径和 PR 语气，给出可直接替换的修改建议。</p>
+                <p>针对已有稿件完成审校、规范化和改写，检查事实、时间表述、品牌口径和 PR 语气，并输出可直接使用的修改建议或改写结果。</p>
               </article>
               <article class="module">
                 <span class="num">Module 03</span>
                 <h3>知识库检索</h3>
-                <p>把本地资料变成可查询的上下文，用在生成和审校前，减少空泛表达和无依据判断。</p>
+                <p>将本地资料整理为可检索的上下文，为生成、审校和改写提供资料支撑，帮助输出更贴近项目背景与品牌表达。</p>
               </article>
             </div>
             <div class="decision-list">
-              <div class="decision"><strong>显式字段</strong><span>内容类型、品牌、语气、目标让用户自己选择，避免所有意图都藏在 prompt 里。</span></div>
-              <div class="decision"><strong>文档结果</strong><span>输出按章节整理，方便复制、审阅和二次修改，不像聊天记录。</span></div>
-              <div class="decision"><strong>低 AI 感</strong><span>界面语言克制，强调工作流和交付物，而不是一直提醒用户“这是 AI”。</span></div>
+              <div class="decision"><strong>显式字段</strong><span>内容类型、品牌、语气和任务目标以字段形式呈现，方便用户直接选择。</span></div>
+              <div class="decision"><strong>文档结果</strong><span>输出按章节整理，便于复制、审阅、导出和继续修改。</span></div>
+              <div class="decision"><strong>任务导向表达</strong><span>界面语言围绕任务、资料和交付展开，保持专业、克制和清晰。</span></div>
             </div>
           </section>
 
@@ -483,11 +493,11 @@
             <div class="section-head">
               <div>
                 <div class="kicker">UX Iteration</div>
-                <h2>从功能列表，改成 <em>工作台</em></h2>
+                <h2>页面结构从功能集合<br>走向 <em>任务工作台</em></h2>
               </div>
-              <p class="section-note">最近一版把 Figma Make 生成的 React 前端接到 FastAPI 后端，同时重新调了输入区和交互状态。</p>
+              <p class="section-note">最新版本已完成前后端接通，并同步调整了输入方式、状态反馈和结果展示。</p>
             </div>
-            <p>第一版更像“功能集合”：生成、检查、统一、改写、检索、上传都并列摆着。现在更像一个可以工作的页面：左侧是任务模块，中间是 brief 表单，结果区按文档结构呈现。</p>
+            <p>界面按任务流组织：任务选择、输入或上传、运行处理、结果输出。生成、审校、规范化和改写分别对应不同流程，结果按章节呈现，便于继续编辑和导出。</p>
             <div class="ux-switch" role="tablist" aria-label="界面对比">
               <button class="active" data-view="new" type="button">Current workspace</button>
               <button data-view="old" type="button">Earlier function list</button>
@@ -512,20 +522,20 @@
             <div class="section-head">
               <div>
                 <div class="kicker">Build & Delivery</div>
-                <h2>从想法到 <em>能点开体验</em></h2>
+                <h2>把原型接成<br><em>可访问的产品版本</em></h2>
               </div>
-              <p class="section-note">我把它当成一个可以交付的产品原型，而不是只停留在 demo。</p>
+              <p class="section-note">当前版本已完成前后端接通、资料检索链路和在线部署，可直接打开体验核心流程。</p>
             </div>
             <div class="build-grid">
               <div class="stack">
-                <div class="stack-row"><span>Frontend</span><strong>React + Vite，复刻 Figma Make 的交互视觉，并接入真实后端接口。</strong></div>
-                <div class="stack-row"><span>Backend</span><strong>FastAPI 提供生成、审校、知识库检索接口。</strong></div>
-                <div class="stack-row"><span>Retrieval</span><strong>FAISS + sentence-transformers，用本地知识库给内容生成提供上下文。</strong></div>
-                <div class="stack-row"><span>Deploy</span><strong>Docker + Zeabur，演示环境使用脱敏或示例资料，不提交真实客户信息。</strong></div>
+                <div class="stack-row"><span>Frontend</span><strong>React + Vite 承接页面结构与交互，复现当前工作台的主要使用路径。</strong></div>
+                <div class="stack-row"><span>Backend</span><strong>FastAPI 提供内容生成、稿件处理和知识库检索接口。</strong></div>
+                <div class="stack-row"><span>Retrieval</span><strong>FAISS 与 sentence-transformers 支撑本地知识库检索，为生成和处理任务提供相关上下文。</strong></div>
+                <div class="stack-row"><span>Deploy</span><strong>演示环境已完成部署，支持在线访问、任务演示和结果展示。</strong></div>
               </div>
               <div class="closing-card">
-                <h3>这个项目想展示的</h3>
-                <p>我可以从真实汽车 PR 工作流里拆问题，也能把它做成可用产品：定义范围、设计交互、定位工程问题、接好前后端，并把它部署到线上。</p>
+                <h3>这个项目体现的能力</h3>
+                <p>我可以从真实汽车 PR 工作流中提炼任务，完成范围定义、流程设计、交互组织、前后端接通和在线部署，并把它整理成一个可持续迭代的产品原型。</p>
               </div>
             </div>
             <div class="final-links">
