@@ -235,6 +235,9 @@ a.link:hover{border-color:var(--color-accent)}
         <a href="https://github.com/biu0716/pr-semantic-search" target="_blank" style="display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:var(--space-3) var(--space-6);font-weight:600;font-size:var(--text-sm);text-decoration:none">
           GitHub 仓库
         </a>
+        <a href="podcast-institute.html" style="display:inline-flex;align-items:center;gap:var(--space-2);background:var(--color-surface-warm);color:var(--color-text);border:1px solid var(--color-border-mid);border-radius:var(--radius-full);padding:var(--space-3) var(--space-6);font-weight:600;font-size:var(--text-sm);text-decoration:none">
+          播客研究所项目页
+        </a>
         <span style="font-size:var(--text-xs);color:var(--color-text-subtle)">Alpha 原型 · 核心链路已完成 · 可演示</span>
       </div>
     </div>
@@ -680,4 +683,15 @@ a.link:hover{border-color:var(--color-accent)}
         const r = m.getBoundingClientRect();
         return r.top <= 60 && r.bottom > 60;
       });
-      if (e.key === 'ArrowDown' && current < modules.
+      if (e.key === 'ArrowDown' && current < modules.length - 1) {
+        modules[current + 1]?.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (e.key === 'ArrowUp' && current > 0) {
+        modules[current - 1]?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  })();
+})();
+</script>
+</body>
+</html>
