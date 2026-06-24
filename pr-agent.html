@@ -1,293 +1,561 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PR Agent · 产品案例 | 时子涵</title>
 <meta name="description" content="PR Agent 是面向汽车公关工作的内容工作台，支持传播内容生成、稿件审校改写和知识库检索。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#f7f3ea;
-    --paper-2:#fbf8f1;
-    --ink:#2a2a26;
-    --ink-soft:#55524a;
-    --ink-faint:#8a857a;
-    --teal:#1d6f67;
-    --teal-soft:#e3efed;
-    --line:#e2dccd;
-    --rust:#a8543a;
+    --navy:#1c2644;
+    --navy-alt:#232f55;
+    --cream:#f0ece3;
+    --cream-alt:#e6e0d4;
+    --warm:#e2dcd0;
+    --warm-muted:#8a96a8;
+    --ink:#1a2030;
+    --ink-soft:#5a6270;
+    --ink-faint:#9aa0a8;
+    --gold:#c8a870;
+    --line-dark:#2e3d5c;
+    --line-light:#cac4b4;
+    --rust:#a66a53;
+    --green:#4b6e4f;
+    --display:"Source Serif 4","Noto Serif SC",Georgia,serif;
+    --body:"DM Sans","Noto Sans SC",system-ui,sans-serif;
+    --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    line-height:1.8;
-    font-size:16px;
+    min-height:100vh;
+    background:var(--navy);
+    color:var(--warm);
+    font-family:var(--body);
     -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
-  .serif{font-family:"Songti SC","STSong","SimSun",serif;}
-  .wrap{max-width:700px;margin:0 auto;padding:0 24px;}
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    background:
+      linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:80px 80px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .shell{width:min(1180px,calc(100vw - 48px));margin:0 auto;}
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:64px;
+    border-bottom:1px solid var(--line-dark);
+    background:rgba(28,38,68,.92);
+    backdrop-filter:blur(16px);
+  }
+  .topbar-inner{width:min(1180px,calc(100vw - 48px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .brandmark{display:flex;align-items:center;gap:14px;}
+  .brandmark strong{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;}
+  .brandmark span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-muted);}
+  .sigil{
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+  }
+  .toplinks{display:flex;gap:18px;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--warm-muted);}
+  .toplinks a:hover{color:var(--gold);}
 
-  header{padding:84px 0 52px;border-bottom:1px solid var(--line);}
-  .eyebrow{color:var(--teal);font-size:13px;letter-spacing:.18em;font-weight:600;margin-bottom:20px;}
-  h1{font-family:"Songti SC","STSong","SimSun",serif;font-size:52px;line-height:1.15;font-weight:700;letter-spacing:.01em;margin-bottom:18px;}
-  .lead{font-size:18px;color:var(--ink-soft);max-width:520px;line-height:1.7;}
-  .links{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;}
-  .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;transition:.18s;border:1px solid var(--line);}
-  .btn-primary{background:var(--teal);color:#fff;border-color:var(--teal);}
-  .btn-primary:hover{background:#175650;}
-  .btn-ghost{background:transparent;color:var(--ink);}
-  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .kicker{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    color:var(--gold);
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .kicker::before{content:"";width:36px;height:1px;background:var(--gold);}
+  .hero{min-height:min(860px,calc(100vh - 64px));display:grid;grid-template-columns:minmax(0,.88fr) minmax(420px,1.12fr);gap:56px;align-items:center;padding:72px 0 88px;}
+  .hero h1{
+    font-family:var(--display);
+    font-size:clamp(4.8rem,12vw,11.5rem);
+    line-height:.85;
+    letter-spacing:-.04em;
+    font-weight:700;
+    margin-bottom:28px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500;}
+  .lead{
+    max-width:620px;
+    font-size:clamp(18px,1.6vw,23px);
+    line-height:1.68;
+    color:var(--warm);
+    overflow-wrap:anywhere;
+  }
+  .lead strong{color:#fff;font-weight:600;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 36px;}
+  .button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    padding:0 18px;
+    border:1px solid var(--gold);
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    transition:background .18s,color .18s,border-color .18s;
+  }
+  .button.primary{background:var(--gold);color:var(--navy);}
+  .button.primary:hover{background:transparent;color:var(--gold);}
+  .button.ghost{color:var(--gold);}
+  .button.ghost:hover{background:rgba(200,168,112,.12);}
+  .meta-strip{
+    border-top:1px solid var(--line-dark);
+    border-bottom:1px solid var(--line-dark);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+  .meta-item{padding:18px 18px 16px;border-right:1px solid var(--line-dark);}
+  .meta-item:last-child{border-right:0;}
+  .meta-item span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm-muted);margin-bottom:8px;}
+  .meta-item strong{display:block;font-size:14px;font-weight:500;color:var(--warm);line-height:1.45;}
+  .hero-visual{
+    min-width:0;
+    overflow:hidden;
+    border:1px solid var(--line-dark);
+    background:rgba(255,255,255,.035);
+    padding:20px;
+  }
+  .visual-chrome{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line-dark);
+    margin-bottom:16px;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--warm-muted);
+  }
+  .hero-visual img{width:100%;border:1px solid var(--line-dark);background:var(--cream);}
+  .caption{font-size:13px;line-height:1.6;color:var(--warm-muted);margin-top:14px;}
 
-  section{padding:50px 0;border-bottom:1px solid var(--line);}
-  .kicker{color:var(--teal);font-size:13px;letter-spacing:.14em;font-weight:600;margin-bottom:14px;}
-  h2{font-family:"Songti SC","STSong","SimSun",serif;font-size:29px;line-height:1.3;font-weight:700;margin-bottom:20px;letter-spacing:.01em;}
-  h3{font-size:17px;font-weight:600;margin:24px 0 7px;color:var(--ink);}
-  p{margin-bottom:14px;color:var(--ink-soft);}
-  p.body-ink{color:var(--ink);}
-  strong{color:var(--ink);font-weight:600;}
-  .teal-word{color:var(--teal);font-weight:600;}
+  .paper{background:var(--cream);color:var(--ink);}
+  .case-grid{display:grid;grid-template-columns:180px minmax(0,1fr);gap:64px;padding:86px 0 96px;}
+  .side-index{position:sticky;top:96px;align-self:start;border-top:1px solid var(--line-light);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+  .side-index a{display:flex;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-light);}
+  .side-index a:hover{color:var(--ink);}
+  .side-index span{color:var(--gold);}
+  .case-section{padding:0 0 84px;margin-bottom:84px;border-bottom:1px solid var(--line-light);}
+  .case-section:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0;}
+  .case-section .kicker{color:var(--gold);}
+  .case-section .kicker::before{background:var(--gold);}
+  .section-head{display:grid;grid-template-columns:minmax(0,.75fr) minmax(240px,.25fr);gap:40px;align-items:start;margin-bottom:34px;}
+  h2{
+    font-family:var(--display);
+    font-size:clamp(34px,4.8vw,66px);
+    line-height:1.02;
+    letter-spacing:-.025em;
+    font-weight:650;
+  }
+  h2 em{font-style:italic;color:var(--gold);font-weight:500;}
+  .section-note{
+    border-top:1px solid var(--line-light);
+    padding-top:16px;
+    font-size:15px;
+    line-height:1.72;
+    color:var(--ink-soft);
+  }
+  p{font-size:17px;line-height:1.82;color:var(--ink-soft);margin-bottom:16px;overflow-wrap:anywhere;}
+  p strong{color:var(--ink);font-weight:600;}
+  .statement{
+    font-family:var(--display);
+    font-size:clamp(24px,2.6vw,38px);
+    line-height:1.3;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:20px 0 28px;
+  }
+  .flow{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    border:1px solid var(--line-light);
+    margin:28px 0 34px;
+  }
+  .flow-step{min-height:136px;padding:20px 18px;border-right:1px solid var(--line-light);}
+  .flow-step:last-child{border-right:0;}
+  .num{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .flow-step strong{display:block;font-family:var(--display);font-size:22px;line-height:1.18;color:var(--ink);margin-bottom:10px;}
+  .flow-step small{display:block;font-size:13px;line-height:1.55;color:var(--ink-soft);}
+  .screenshot{
+    border:1px solid var(--line-light);
+    background:#fff;
+    padding:10px;
+  }
+  .screenshot img{border:1px solid #ddd6c7;}
+  .screenshot figcaption{font-size:13px;line-height:1.55;color:var(--ink-faint);text-align:center;margin-top:12px;}
 
-  .star{background:linear-gradient(180deg,#fbf8f1,#f4eee1);border:1px solid var(--line);border-radius:16px;margin:8px 0 4px;}
-  .stat-row{display:flex;align-items:center;justify-content:center;gap:28px;padding:32px 24px 26px;flex-wrap:wrap;text-align:center;}
-  .stat{display:flex;flex-direction:column;align-items:center;}
-  .stat .num{font-family:"Songti SC","STSong","SimSun",serif;font-size:54px;font-weight:700;line-height:1;}
-  .stat .num.bad{color:var(--rust);}
-  .stat .num.good{color:var(--teal);}
-  .stat .cap{font-size:13px;color:var(--ink-faint);margin-top:10px;}
-  .arrow{font-size:28px;color:var(--ink-faint);}
+  .module-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line-light);}
+  .module{padding:26px 24px 24px;border-right:1px solid var(--line-light);min-height:236px;}
+  .module:last-child{border-right:0;}
+  .module h3{font-family:var(--display);font-size:30px;line-height:1.14;letter-spacing:-.01em;margin-bottom:18px;color:var(--ink);}
+  .module p{font-size:15px;line-height:1.72;margin:0;}
+  .decision-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-light);margin-top:22px;}
+  .decision{padding:22px;border-right:1px solid var(--line-light);}
+  .decision:last-child{border-right:0;}
+  .decision strong{display:block;font-family:var(--display);font-size:24px;line-height:1.2;margin-bottom:10px;}
+  .decision span{display:block;font-size:14px;line-height:1.7;color:var(--ink-soft);}
 
-  .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 4px;}
-  .cmp{border:1px solid var(--line);border-radius:12px;padding:17px 17px 15px;background:var(--paper-2);}
-  .cmp.after{border-color:var(--teal);background:var(--teal-soft);}
-  .cmp .tag{font-size:12px;font-weight:600;letter-spacing:.08em;margin-bottom:8px;}
-  .cmp.before .tag{color:var(--ink-faint);}
-  .cmp.after .tag{color:var(--teal);}
-  .cmp p{font-size:14.5px;margin:0;color:var(--ink-soft);line-height:1.65;}
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);margin:28px 0;}
+  .stat{padding:24px 24px 22px;border-right:1px solid var(--line-light);}
+  .stat:last-child{border-right:0;}
+  .stat strong{display:block;font-family:var(--display);font-size:clamp(48px,6vw,86px);font-weight:600;line-height:.95;color:var(--gold);letter-spacing:-.04em;margin-bottom:10px;}
+  .stat span{display:block;font-size:14px;line-height:1.65;color:var(--ink-soft);}
+  .diagnostic{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border:1px solid var(--line-light);
+    margin-top:22px;
+  }
+  .diag-panel{padding:26px;border-right:1px solid var(--line-light);}
+  .diag-panel:last-child{border-right:0;}
+  .diag-panel.bad{background:#f3e8e3;}
+  .diag-panel.good{background:#e7ece2;}
+  .diag-panel h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;color:var(--ink-soft);}
+  .diag-panel p{font-family:var(--display);font-size:30px;line-height:1.25;color:var(--ink);margin-bottom:12px;}
+  .diag-panel .mark{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+  .bad .mark{color:var(--rust);}
+  .good .mark{color:var(--green);}
 
-  ul.clean{list-style:none;margin:6px 0 14px;}
-  ul.clean li{position:relative;padding-left:20px;margin-bottom:10px;color:var(--ink-soft);}
-  ul.clean li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  .ux-switch{display:flex;gap:0;border:1px solid var(--line-light);width:max-content;margin:24px 0 22px;}
+  .ux-switch button{
+    appearance:none;
+    border:0;
+    border-right:1px solid var(--line-light);
+    background:transparent;
+    padding:13px 18px;
+    cursor:pointer;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .ux-switch button:last-child{border-right:0;}
+  .ux-switch button.active{background:var(--ink);color:var(--cream);}
+  .old-ui{
+    border:1px dashed var(--line-light);
+    padding:28px;
+    background:var(--cream-alt);
+  }
+  .old-ui-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .old-ui-grid span{border:1px solid var(--line-light);padding:8px 12px;font-size:13px;color:var(--ink-soft);background:var(--cream);}
+  .old-ui p{margin-bottom:0;}
 
-  .callout{border-left:3px solid var(--teal);padding:2px 0 2px 18px;margin:18px 0;color:var(--ink);font-size:16px;}
+  .build-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;}
+  .stack{border:1px solid var(--line-light);}
+  .stack-row{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid var(--line-light);}
+  .stack-row:last-child{border-bottom:0;}
+  .stack-row span{padding:17px 18px;border-right:1px solid var(--line-light);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
+  .stack-row strong{padding:17px 18px;font-size:15px;font-weight:500;line-height:1.55;color:var(--ink);}
+  .closing-card{background:var(--navy);color:var(--warm);padding:28px;border:1px solid var(--line-dark);}
+  .closing-card h3{font-family:var(--display);font-size:34px;line-height:1.08;margin-bottom:18px;color:var(--warm);}
+  .closing-card p{font-size:15px;color:var(--warm-muted);line-height:1.72;margin:0;}
+  .final-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+  .final-links .button{border-color:var(--ink);color:var(--ink);}
+  .final-links .button.primary{background:var(--ink);color:var(--cream);}
+  .final-links .button.primary:hover{background:transparent;color:var(--ink);}
 
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 4px;}
-  .flow .node{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:7px 13px;font-size:13.5px;color:var(--ink);white-space:nowrap;}
-  .flow .ar{color:var(--ink-faint);font-size:14px;}
-  .modes{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0 14px;}
-  .modes .mode{background:var(--teal-soft);color:var(--teal);border:1px solid #cfe4e0;border-radius:8px;padding:7px 16px;font-size:14.5px;font-weight:600;}
-  .dgm{width:100%;height:auto;margin:16px 0 6px;display:block;}
+  footer{border-top:1px solid var(--line-dark);padding:42px 0;color:var(--warm-muted);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;}
+  footer .shell{display:flex;justify-content:space-between;gap:20px;}
 
-  .shot{width:100%;height:auto;border:1px solid var(--line);border-radius:12px;display:block;box-shadow:0 2px 16px rgba(60,50,30,.06);}
-  .fig{margin:18px 0 4px;}
-  .fig figcaption{font-size:13px;color:var(--ink-faint);margin-top:9px;text-align:center;}
-  .toggle{display:flex;gap:8px;margin:16px 0;}
-  .tg-btn{font-family:inherit;font-size:13.5px;padding:8px 15px;border-radius:999px;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-soft);cursor:pointer;transition:.15s;}
-  .tg-btn:hover{border-color:var(--teal);}
-  .tg-btn.active{background:var(--teal);color:#fff;border-color:var(--teal);}
-  .wf{border:1px dashed var(--line);border-radius:12px;padding:20px;background:var(--paper-2);min-height:180px;}
-  .wf-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
-  .wf-tabs span{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink-soft);}
-  .wf-body{font-size:14px;color:var(--ink-faint);line-height:1.8;}
-
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
-  .card{border:1px solid var(--line);border-radius:12px;padding:19px;background:var(--paper-2);}
-  .card .ct{font-weight:600;color:var(--ink);margin-bottom:6px;font-size:15.5px;}
-  .card .cd{font-size:14px;color:var(--ink-soft);line-height:1.65;}
-
-  footer{padding:46px 0 78px;text-align:center;}
-  footer .who{color:var(--ink-faint);font-size:14px;margin-bottom:18px;}
-
-  @media(max-width:620px){
-    h1{font-size:38px;}
-    h2{font-size:23px;}
-    .compare,.cards{grid-template-columns:1fr;}
-    .stat-row{gap:14px;}
-    .stat .num{font-size:42px;}
-    header{padding:60px 0 42px;}
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr;min-height:auto;padding:60px 0 72px;}
+    .meta-strip{grid-template-columns:1fr 1fr;}
+    .meta-item:nth-child(2){border-right:0;}
+    .meta-item:nth-child(-n+2){border-bottom:1px solid var(--line-dark);}
+    .case-grid{grid-template-columns:1fr;gap:0;}
+    .side-index{position:static;display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:54px;}
+    .side-index a{padding-right:14px;}
+    .section-head{grid-template-columns:1fr;}
+    .flow,.module-grid,.decision-list,.stats,.diagnostic,.build-grid{grid-template-columns:1fr;}
+    .flow-step,.module,.decision,.stat,.diag-panel{border-right:0;border-bottom:1px solid var(--line-light);}
+    .flow-step:last-child,.module:last-child,.decision:last-child,.stat:last-child,.diag-panel:last-child{border-bottom:0;}
+  }
+  @media(max-width:640px){
+    html,body{overflow-x:hidden;}
+    .shell,.topbar-inner{width:min(100% - 40px,1180px);}
+    .toplinks{display:none;}
+    .hero{padding:44px 0 54px;}
+    .hero h1{font-size:clamp(4.2rem,22vw,5.8rem);}
+    .lead{font-size:16px;line-height:1.7;}
+    .hero-visual{width:100%;padding:12px;}
+    .visual-chrome span:last-child{display:none;}
+    .meta-strip{grid-template-columns:1fr;}
+    .meta-item{border-right:0;border-bottom:1px solid var(--line-dark);}
+    .meta-item:last-child{border-bottom:0;}
+    .case-grid{padding:58px 0 70px;}
+    .side-index{grid-template-columns:1fr 1fr;font-size:10px;}
+    .case-section{padding-bottom:62px;margin-bottom:62px;}
+    h2{font-size:38px;}
+    p{font-size:16px;}
+    .ux-switch{width:100%;display:grid;grid-template-columns:1fr;}
+    .ux-switch button{border-right:0;border-bottom:1px solid var(--line-light);}
+    .ux-switch button:last-child{border-bottom:0;}
+    .stack-row{grid-template-columns:1fr;}
+    .stack-row span{border-right:0;border-bottom:1px solid var(--line-light);}
+    footer .shell{flex-direction:column;}
   }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="wrap">
-    <div class="eyebrow">个人项目</div>
-    <h1>PR Agent</h1>
-    <p class="lead">面向汽车公关工作的内容工作台。把传播 brief 转成可用初稿，也能审校稿件、统一品牌口径，并从本地知识库检索资料；现已接入 React 前端与 FastAPI 后端，在线可体验。</p>
-    <div class="links">
-      <a class="btn btn-primary" href="https://pr-agent.preview.tencent-zeabur.cn" target="_blank">在线体验 →</a>
-      <a class="btn btn-ghost" href="https://github.com/biu0716/pr-semantic-search" target="_blank">查看代码 (GitHub)</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brandmark" href="index.html" aria-label="返回作品集首页">
+        <span class="sigil">PR</span>
+        <span><strong>PR Agent</strong><br>Product Case</span>
+      </a>
+      <nav class="toplinks" aria-label="页面导航">
+        <a href="#overview">Overview</a>
+        <a href="#product">Product</a>
+        <a href="#build">Build</a>
+        <a href="https://pr-agent.preview.tencent-zeabur.cn" target="_blank" rel="noreferrer">Live</a>
+      </nav>
     </div>
-  </div>
-</header>
+  </header>
 
-<section>
-  <div class="wrap">
-    <div class="kicker">这是什么</div>
-    <h2>汽车公关顾问的内容工作台</h2>
-    <p class="body-ink">PR Agent 不是一个单纯的“AI 写稿器”，而是一套围绕汽车传播流程设计的工作台：先收集 brief 和分类信息，再生成传播主题、方向、导语、新闻稿段落和社媒文案；也可以对已有稿件做风险检查、口径统一和 PR 风格改写。</p>
-    <p>核心流程从 brief 开始，而不是从空白聊天框开始：</p>
-    <div class="flow">
-      <span class="node">传播 brief</span><span class="ar">→</span>
-      <span class="node">分类字段</span><span class="ar">→</span>
-      <span class="node">知识库检索</span><span class="ar">→</span>
-      <span class="node">策略骨架</span><span class="ar">→</span>
-      <span class="node">文档式交付</span>
-    </div>
-    <figure class="fig">
-      <img class="shot" src="assets/pr-agent-current.png" alt="生成一份传播提案的真实界面">
-      <figcaption>工作流示意：从传播需求进入，整理出策略骨架与可继续编辑的交付内容。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="kicker">为什么做</div>
-    <h2>汽车 PR 写稿的难点在哪</h2>
-    <p>AI 写稿不难。真正难的是让输出稳定符合汽车传播场景：不混入无关车型，不编造参数，不把技术口径写成营销夸张，也能留下可继续编辑的交付物。</p>
-    <p class="callout">我访谈了 20 多位从业者，确认大家真正需要的不是“更会聊天的 AI”，而是能贴近真实工作流的内容工具。</p>
-    <p>所以我把它做成了专用工作台。</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="kicker">关键判断</div>
-    <h2>几个设计决定</h2>
-
-    <h3>三个工作模块，各自对应真实任务</h3>
-    <div class="modes">
-      <span class="mode">传播内容生成</span><span class="mode">稿件审校改写</span><span class="mode">知识库检索</span>
-    </div>
-    <p>生成、审校、检索的输入和判断标准不同，所以拆成独立模块，而不是塞进一个聊天框。</p>
-
-    <h3>把 brief 结构化，而不是藏在 prompt 里</h3>
-    <p>内容类型、品牌、语气、目标会显式写入任务上下文，用户能看见自己正在控制什么。</p>
-
-    <h3>输出做成文档，而不是聊天记录</h3>
-    <p>结果按传播主题、方向、导语、稿件段落和社媒文案整理，像交付给顾问继续编辑的 briefing document。</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="kicker">我修掉的一个问题</div>
-    <h2>三分之一的资料搜不出来</h2>
-    <p>测试检索质量时，我发现知识库里约三分之一的内容怎么搜都召不回，像消失了。</p>
-
-    <div class="star">
-      <div class="stat-row">
-        <div class="stat"><span class="num bad">≈35%</span><span class="cap">内容被静默漏掉</span></div>
-        <div class="arrow">→</div>
-        <div class="stat"><span class="num good">0</span><span class="cap">修复后归零</span></div>
-        <div class="arrow">·</div>
-        <div class="stat"><span class="num good">零</span><span class="cap">回归，没误伤其它</span></div>
+  <main>
+    <section class="shell hero">
+      <div>
+        <div class="kicker">Product Case / Automotive PR</div>
+        <h1>PR<br><em>Agent</em></h1>
+        <p class="lead">一个面向汽车公关工作的内容工作台。它把传播需求、知识库检索、稿件生成和审校改写放进同一个流程里，让 AI 不再像聊天窗口，而更像一个能交付初稿的 <strong>PR 工作台</strong>。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://pr-agent.preview.tencent-zeabur.cn" target="_blank" rel="noreferrer">Open Product</a>
+          <a class="button ghost" href="https://github.com/biu0716/pr-semantic-search" target="_blank" rel="noreferrer">View GitHub</a>
+        </div>
+        <div class="meta-strip" aria-label="项目概览">
+          <div class="meta-item"><span>Role</span><strong>Product idea, UX, frontend, backend</strong></div>
+          <div class="meta-item"><span>Domain</span><strong>Automotive PR content workflow</strong></div>
+          <div class="meta-item"><span>Stack</span><strong>React, Vite, FastAPI, FAISS</strong></div>
+          <div class="meta-item"><span>Status</span><strong>Online prototype on Zeabur</strong></div>
+        </div>
       </div>
-    </div>
 
-    <h3>根因：一个子串误匹配</h3>
-    <svg class="dgm" viewBox="0 0 640 272" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
-      <text x="8" y="22" font-size="13" fill="#55524a">知识库里有两款车的资料：</text>
-      <rect x="8" y="34" width="78" height="30" rx="8" fill="#e3efed" stroke="#cfe4e0"/>
-      <text x="47" y="54" font-size="14" font-weight="700" fill="#1d6f67" text-anchor="middle">CLA 级</text>
-      <rect x="98" y="34" width="158" height="30" rx="8" fill="#fbf8f1" stroke="#e2dccd"/>
-      <text x="177" y="54" font-size="14" fill="#2a2a26" text-anchor="middle">S 级（S-Class）</text>
-      <text x="300" y="54" font-size="13" fill="#8a857a">当用户搜「CLA」时 &#8595;</text>
-
-      <rect x="6" y="84" width="628" height="80" rx="12" fill="#f6ece7" stroke="#e7d6cd"/>
-      <text x="26" y="110" font-size="12" font-weight="700" fill="#a8543a" letter-spacing="1">包含匹配</text>
-      <text x="26" y="146" font-size="23" fill="#2a2a26" font-family="'Songti SC','STSong',serif">S-<tspan fill="#a8543a" font-weight="700">Cla</tspan>ss 里也含 c-l-a</text>
-      <text x="430" y="142" font-size="20" fill="#8a857a">&#8594;</text>
-      <text x="466" y="146" font-size="15" font-weight="700" fill="#a8543a">&#10005; S 级被误伤丢弃</text>
-
-      <rect x="6" y="180" width="628" height="80" rx="12" fill="#e3efed" stroke="#cfe4e0"/>
-      <text x="26" y="206" font-size="12" font-weight="700" fill="#1d6f67" letter-spacing="1">带词边界</text>
-      <text x="26" y="242" font-size="23" fill="#2a2a26" font-family="'Songti SC','STSong',serif">只认完整的词 CLA</text>
-      <text x="430" y="238" font-size="20" fill="#8a857a">&#8594;</text>
-      <text x="466" y="242" font-size="15" font-weight="700" fill="#1d6f67">&#10003; 两款车各归各</text>
-    </svg>
-    <p style="margin-top:14px;">这段能说明：我读得懂这套系统底层在做什么，能用数据定位问题，也会验证修复没有副作用。</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="kicker">让它更好用</div>
-    <h2>从工具页改成工作台</h2>
-    <p>最近一版把 Figma Make 生成的 React 前端接到 FastAPI 后端，保留交互感，同时把 AI 感降下来：左侧是工作模块，中央是 brief 表单和文档式结果。点下面切换看对比：</p>
-
-    <div class="toggle">
-      <button class="tg-btn" data-v="old">第一版 · 功能并列</button>
-      <button class="tg-btn active" data-v="new">现在 · 工作台</button>
-    </div>
-    <div id="ux-old" hidden>
-      <div class="wf">
-        <div class="wf-tabs"><span>生成</span><span>检查</span><span>统一</span><span>改写</span><span>检索</span><span>上传</span><span>导出</span><span>设置</span></div>
-        <div class="wf-body">打开就是一排功能标签，每个都是个入口。<br>新用户得先弄懂每个标签是干嘛的，才知道从哪下手。</div>
-      </div>
-    </div>
-    <div id="ux-new">
-      <figure class="fig" style="margin-top:0;">
-        <img class="shot" src="assets/pr-agent-current.png" alt="PR Agent 工作台界面">
-        <figcaption>现在的方向：像 PR 顾问的内容工作台，而不是通用聊天网页。</figcaption>
+      <figure class="hero-visual">
+        <div class="visual-chrome"><span>Current Interface</span><span>Brief to Draft</span></div>
+        <img src="assets/pr-agent-current.png" alt="PR Agent 当前工作台界面">
+        <figcaption class="caption">当前版本把输入区扩大成更像 brief 的工作区，并保留内容类型、品牌、语气、目标这些 PR 控制项。</figcaption>
       </figure>
-    </div>
-    <p style="margin-top:16px;">现在用户能从 brief 开始，也能直接审校已有稿件，路径更接近真实工作。</p>
-  </div>
-</section>
+    </section>
 
-<section>
-  <div class="wrap">
-    <div class="kicker">从原型到上线</div>
-    <h2>做到能点开就用</h2>
-    <p>我把它当成要交付的产品来收尾：</p>
-    <ul class="clean">
-      <li>FastAPI 提供生成、审校、检索接口，React / Vite 前端负责工作台交互。</li>
-      <li>生成流程先搭传播策略骨架，再整理为 briefing document，避免模型直接吐一整段。</li>
-      <li>演示环境使用脱敏 / 示例知识库，不提交真实客户资料；部署到 Zeabur，链接可直接体验。</li>
-    </ul>
-    <p>技术栈：React · Vite · FastAPI · FAISS · sentence-transformers · Docker · Zeabur。</p>
-  </div>
-</section>
+    <section class="paper">
+      <div class="shell case-grid">
+        <aside class="side-index" aria-label="案例目录">
+          <a href="#overview"><span>01</span> Overview</a>
+          <a href="#workflow"><span>02</span> Workflow</a>
+          <a href="#product"><span>03</span> Product</a>
+          <a href="#diagnosis"><span>04</span> Diagnosis</a>
+          <a href="#ux"><span>05</span> UX</a>
+          <a href="#build"><span>06</span> Build</a>
+        </aside>
 
-<section>
-  <div class="wrap">
-    <div class="kicker">关于我</div>
-    <h2>这个项目想展示的</h2>
-    <p>做出来已经不难。我想展示的是几件事：</p>
-    <div class="cards">
-      <div class="card"><div class="ct">从真实痛点选题</div><div class="cd">从自己的业务流程里找一个值得做的问题，用 20+ 访谈验证。</div></div>
-      <div class="card"><div class="ct">用数据诊断</div><div class="cd">定位并修复影响 35% 内容的缺陷，验证零回归。</div></div>
-      <div class="card"><div class="ct">有取舍的产品设计</div><div class="cd">从聊天式 AI 改成工作台结构，保留内容类型、品牌、语气、目标这些真实 PR 控制项。</div></div>
-      <div class="card"><div class="ct">端到端上线</div><div class="cd">从 Figma 原型、React 前端、FastAPI 后端到 Zeabur 部署，做成可打开、可演示的在线产品。</div></div>
-    </div>
-  </div>
-</section>
+        <div>
+          <section class="case-section" id="overview">
+            <div class="section-head">
+              <div>
+                <div class="kicker">What it is</div>
+                <h2>汽车公关顾问的 <em>内容工作台</em></h2>
+              </div>
+              <p class="section-note">PR Agent 不是一个通用写稿机器人，而是围绕汽车传播任务拆出来的垂直 Agent。</p>
+            </div>
+            <p class="statement">它从 brief 进入，把模糊需求整理成传播方向、标题、导语、新闻稿段落和社媒文案；也能对已有稿件做风险检查、口径统一和 PR 风格改写。</p>
+            <p>我希望它更像真实顾问会用的工作台：输入有结构，输出像文档，过程能解释，关键资料能回到知识库检索，而不是把所有工作都塞进一个空白聊天框。</p>
+          </section>
 
-<footer>
-  <div class="wrap">
-    <div class="who serif">时子涵 · 从品牌公关转向 AI 应用产品</div>
-    <div class="links" style="justify-content:center;">
-      <a class="btn btn-primary" href="https://pr-agent.preview.tencent-zeabur.cn" target="_blank">在线体验 →</a>
-      <a class="btn btn-ghost" href="https://github.com/biu0716/pr-semantic-search" target="_blank">GitHub</a>
+          <section class="case-section" id="workflow">
+            <div class="section-head">
+              <div>
+                <div class="kicker">Workflow</div>
+                <h2>从传播需求到 <em>可编辑初稿</em></h2>
+              </div>
+              <p class="section-note">核心流程从 brief 开始，而不是从 prompt 开始。</p>
+            </div>
+            <div class="flow" aria-label="PR Agent 工作流">
+              <div class="flow-step"><span class="num">01</span><strong>传播 brief</strong><small>输入项目背景、目标和初步需求。</small></div>
+              <div class="flow-step"><span class="num">02</span><strong>分类字段</strong><small>选择内容类型、品牌、语气与任务目标。</small></div>
+              <div class="flow-step"><span class="num">03</span><strong>知识库检索</strong><small>从本地资料中找可引用的上下文。</small></div>
+              <div class="flow-step"><span class="num">04</span><strong>策略骨架</strong><small>先搭传播逻辑，再生成具体文案。</small></div>
+              <div class="flow-step"><span class="num">05</span><strong>文档交付</strong><small>按章节输出，便于继续修改。</small></div>
+            </div>
+            <figure class="screenshot">
+              <img src="assets/pr-agent-current.png" alt="PR Agent 输入工作区截图">
+              <figcaption>界面不是为了展示“AI 在写稿”，而是让用户感到自己正在处理一个 PR brief。</figcaption>
+            </figure>
+          </section>
+
+          <section class="case-section" id="product">
+            <div class="section-head">
+              <div>
+                <div class="kicker">Product Logic</div>
+                <h2>三个模块，对应三种 <em>真实任务</em></h2>
+              </div>
+              <p class="section-note">生成、审校、检索的输入不同，判断标准也不同，所以不混成一个聊天入口。</p>
+            </div>
+            <div class="module-grid">
+              <article class="module">
+                <span class="num">Module 01</span>
+                <h3>传播内容生成</h3>
+                <p>把传播 brief 转成主题、方向、标题、导语、新闻稿段落和社媒文案，先搭策略骨架，再生成具体内容。</p>
+              </article>
+              <article class="module">
+                <span class="num">Module 02</span>
+                <h3>稿件审校改写</h3>
+                <p>检查已有稿件里的事实风险、时间表述、品牌口径和 PR 语气，给出可直接替换的修改建议。</p>
+              </article>
+              <article class="module">
+                <span class="num">Module 03</span>
+                <h3>知识库检索</h3>
+                <p>把本地资料变成可查询的上下文，用在生成和审校前，减少空泛表达和无依据判断。</p>
+              </article>
+            </div>
+            <div class="decision-list">
+              <div class="decision"><strong>显式字段</strong><span>内容类型、品牌、语气、目标让用户自己选择，避免所有意图都藏在 prompt 里。</span></div>
+              <div class="decision"><strong>文档结果</strong><span>输出按章节整理，方便复制、审阅和二次修改，不像聊天记录。</span></div>
+              <div class="decision"><strong>低 AI 感</strong><span>界面语言克制，强调工作流和交付物，而不是一直提醒用户“这是 AI”。</span></div>
+            </div>
+          </section>
+
+          <section class="case-section" id="diagnosis">
+            <div class="section-head">
+              <div>
+                <div class="kicker">Engineering Diagnosis</div>
+                <h2>我修掉的一个 <em>检索缺陷</em></h2>
+              </div>
+              <p class="section-note">这个项目不只是把页面做出来，也包括读懂系统为什么不稳定。</p>
+            </div>
+            <p>测试知识库检索时，我发现约三分之一的资料怎么搜都召不回。最后定位到原因：车型名过滤用了过宽的子串匹配，导致部分资料被错误排除。</p>
+            <div class="stats">
+              <div class="stat"><strong>≈35%</strong><span>知识库内容被静默漏掉，生成时拿不到应有上下文。</span></div>
+              <div class="stat"><strong>0</strong><span>修复后该类漏召回归零，相关检索能正常返回。</span></div>
+              <div class="stat"><strong>零</strong><span>跑回归检查，没有误伤其它车型资料。</span></div>
+            </div>
+            <div class="diagnostic">
+              <div class="diag-panel bad">
+                <h3>Before / substring match</h3>
+                <p>搜索 CLA 时，S-Class 里的 “cla” 也被命中，于是 S 级资料被误伤丢弃。</p>
+                <span class="mark">Incorrect exclusion</span>
+              </div>
+              <div class="diag-panel good">
+                <h3>After / word boundary</h3>
+                <p>改为识别完整车型词边界后，CLA 和 S-Class 各归各，不再互相污染。</p>
+                <span class="mark">Stable retrieval</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="case-section" id="ux">
+            <div class="section-head">
+              <div>
+                <div class="kicker">UX Iteration</div>
+                <h2>从功能列表，改成 <em>工作台</em></h2>
+              </div>
+              <p class="section-note">最近一版把 Figma Make 生成的 React 前端接到 FastAPI 后端，同时重新调了输入区和交互状态。</p>
+            </div>
+            <p>第一版更像“功能集合”：生成、检查、统一、改写、检索、上传都并列摆着。现在更像一个可以工作的页面：左侧是任务模块，中间是 brief 表单，结果区按文档结构呈现。</p>
+            <div class="ux-switch" role="tablist" aria-label="界面对比">
+              <button class="active" data-view="new" type="button">Current workspace</button>
+              <button data-view="old" type="button">Earlier function list</button>
+            </div>
+            <div id="view-new">
+              <figure class="screenshot">
+                <img src="assets/pr-agent-current.png" alt="PR Agent 当前版本界面">
+                <figcaption>现在的方向：让用户从一个 brief 开始处理任务，而不是面对一排功能按钮。</figcaption>
+              </figure>
+            </div>
+            <div id="view-old" hidden>
+              <div class="old-ui">
+                <div class="old-ui-grid">
+                  <span>生成</span><span>检查</span><span>统一</span><span>改写</span><span>检索</span><span>上传</span><span>导出</span><span>设置</span>
+                </div>
+                <p>问题不在功能少，而在新用户必须先理解每个入口，才知道自己该从哪一步开始。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="case-section" id="build">
+            <div class="section-head">
+              <div>
+                <div class="kicker">Build & Delivery</div>
+                <h2>从想法到 <em>能点开体验</em></h2>
+              </div>
+              <p class="section-note">我把它当成一个可以交付的产品原型，而不是只停留在 demo。</p>
+            </div>
+            <div class="build-grid">
+              <div class="stack">
+                <div class="stack-row"><span>Frontend</span><strong>React + Vite，复刻 Figma Make 的交互视觉，并接入真实后端接口。</strong></div>
+                <div class="stack-row"><span>Backend</span><strong>FastAPI 提供生成、审校、知识库检索接口。</strong></div>
+                <div class="stack-row"><span>Retrieval</span><strong>FAISS + sentence-transformers，用本地知识库给内容生成提供上下文。</strong></div>
+                <div class="stack-row"><span>Deploy</span><strong>Docker + Zeabur，演示环境使用脱敏或示例资料，不提交真实客户信息。</strong></div>
+              </div>
+              <div class="closing-card">
+                <h3>这个项目想展示的</h3>
+                <p>我可以从真实汽车 PR 工作流里拆问题，也能把它做成可用产品：定义范围、设计交互、定位工程问题、接好前后端，并把它部署到线上。</p>
+              </div>
+            </div>
+            <div class="final-links">
+              <a class="button primary" href="https://pr-agent.preview.tencent-zeabur.cn" target="_blank" rel="noreferrer">Open Product</a>
+              <a class="button" href="https://github.com/biu0716/pr-semantic-search" target="_blank" rel="noreferrer">View GitHub</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <span>Shizihan · Portfolio Case</span>
+      <span>PR Agent / Automotive Communications / AI Product</span>
     </div>
-  </div>
-</footer>
+  </footer>
 
 <script>
-document.querySelectorAll('.tg-btn').forEach(function(b){
-  b.addEventListener('click',function(){
-    var v=b.dataset.v;
-    document.querySelectorAll('.tg-btn').forEach(function(x){x.classList.toggle('active',x.dataset.v===v);});
-    document.getElementById('ux-old').hidden=(v!=='old');
-    document.getElementById('ux-new').hidden=(v!=='new');
+  document.querySelectorAll("[data-view]").forEach(function(button){
+    button.addEventListener("click",function(){
+      var view=button.getAttribute("data-view");
+      document.querySelectorAll("[data-view]").forEach(function(item){
+        item.classList.toggle("active",item.getAttribute("data-view")===view);
+      });
+      document.getElementById("view-new").hidden=view!=="new";
+      document.getElementById("view-old").hidden=view!=="old";
+    });
   });
-});
 </script>
-
 </body>
 </html>
