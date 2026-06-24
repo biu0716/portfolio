@@ -191,8 +191,11 @@
     line-height:1.02;
     letter-spacing:-.025em;
     font-weight:650;
+    word-break:keep-all;
+    overflow-wrap:normal;
   }
   h2 em{font-style:italic;color:var(--gold);font-weight:500;}
+  .nowrap{white-space:nowrap;}
   .section-note{
     border-top:1px solid var(--line-light);
     padding-top:16px;
@@ -200,7 +203,7 @@
     line-height:1.72;
     color:var(--ink-soft);
   }
-  p{font-size:17px;line-height:1.82;color:var(--ink-soft);margin-bottom:16px;overflow-wrap:anywhere;}
+  p{font-size:17px;line-height:1.82;color:var(--ink-soft);margin-bottom:16px;overflow-wrap:break-word;word-break:normal;}
   p strong{color:var(--ink);font-weight:600;}
   .statement{
     font-family:var(--display);
@@ -293,7 +296,7 @@
   .stack-row span{padding:17px 18px;border-right:1px solid var(--line-light);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
   .stack-row strong{padding:17px 18px;font-size:15px;font-weight:500;line-height:1.55;color:var(--ink);}
   .closing-card{background:var(--navy);color:var(--warm);padding:28px;border:1px solid var(--line-dark);}
-  .closing-card h3{font-family:var(--display);font-size:34px;line-height:1.08;margin-bottom:18px;color:var(--warm);}
+  .closing-card h3{font-family:var(--display);font-size:clamp(30px,2.55vw,44px);line-height:1.08;margin-bottom:18px;color:var(--warm);word-break:keep-all;}
   .closing-card p{font-size:15px;color:var(--warm-muted);line-height:1.72;margin:0;}
   .final-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
   .final-links .button{border-color:var(--ink);color:var(--ink);}
@@ -433,7 +436,7 @@
             <div class="section-head">
               <div>
                 <div class="kicker">Product Logic</div>
-                <h2>三个模块，覆盖三类<br><em>内容任务</em></h2>
+                <h2><span class="nowrap">三个模块，</span><br><span class="nowrap">覆盖三类</span><br><em>内容任务</em></h2>
               </div>
               <p class="section-note">PR Agent 将内容生成、稿件处理和资料检索拆成独立模块，分别承接不同输入、处理逻辑和结果形式。</p>
             </div>
@@ -465,7 +468,7 @@
             <div class="section-head">
               <div>
                 <div class="kicker">Engineering Diagnosis</div>
-                <h2>我修掉的一个 <em>检索缺陷</em></h2>
+                <h2><span class="nowrap">我修掉的一个</span><br><em class="nowrap">检索缺陷</em></h2>
               </div>
               <p class="section-note">这个项目不只是把页面做出来，也包括读懂系统为什么不稳定。</p>
             </div>
@@ -493,7 +496,7 @@
             <div class="section-head">
               <div>
                 <div class="kicker">UX Iteration</div>
-                <h2>页面结构从功能集合<br>走向 <em>任务工作台</em></h2>
+                <h2><span class="nowrap">页面结构从</span><br><span class="nowrap">功能集合</span><br>走向 <em class="nowrap">任务工作台</em></h2>
               </div>
               <p class="section-note">最新版本已完成前后端接通，并同步调整了输入方式、状态反馈和结果展示。</p>
             </div>
@@ -534,7 +537,7 @@
                 <div class="stack-row"><span>Deploy</span><strong>演示环境已完成部署，支持在线访问、任务演示和结果展示。</strong></div>
               </div>
               <div class="closing-card">
-                <h3>这个项目体现的能力</h3>
+                <h3><span class="nowrap">这个项目体现的能力</span></h3>
                 <p>我可以从真实汽车 PR 工作流中提炼任务，完成范围定义、流程设计、交互组织、前后端接通和在线部署，并把它整理成一个可持续迭代的产品原型。</p>
               </div>
             </div>
